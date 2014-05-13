@@ -14,6 +14,9 @@ RUN echo BR2_TOOLCHAIN_BUILDROOT_WCHAR=y >>.config
 RUN echo BR2_PACKAGE_BRIDGE_UTILS=y >>.config
 RUN echo BR2_PACKAGE_IPROUTE2=y >>.config
 RUN echo BR2_PACKAGE_IPTABLES=y >>.config
+RUN sed -i 's/# CONFIG_NC is not set/CONFIG_NC=y/' package/busybox/busybox-1.21.x.config
+RUN sed -i 's/# CONFIG_NC_SERVER is not set/CONFIG_NC_SERVER=y/' package/busybox/busybox-1.21.x.config
+RUN sed -i 's/# CONFIG_NC_EXTRA is not set/CONFIG_NC_EXTRA=y/' package/busybox/busybox-1.21.x.config
 RUN make olddefconfig
 RUN make
 RUN ln -s /buildroot-2013.08.1/output/images/rootfs.tar /rootfs.tar
